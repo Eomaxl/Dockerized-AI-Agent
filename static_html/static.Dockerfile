@@ -27,4 +27,4 @@ COPY ./src .
 
 # python -m http.server 8000
 # docker run -it -p 3000:8000
-CMD ["python", "-m", "http.server", "8000"] pyapp
+CMD ["python", "-m", "http.server", "8000"] 
