@@ -11,8 +11,10 @@ services: # docker componse expects
       - MY_PROJECT=Hello World
     env_file:
       - .env.sample
-    # volumes:
-    #   - ./backend/src:/app
+    volumes:
+      - ./backend/src:/app
+    depends_on:
+      - db_service
     develop:
       watch:
         - action: rebuild
@@ -38,17 +40,17 @@ services: # docker componse expects
     #   - .env.sample-db
     volumes:
       - dc_managed_db_volume:/var/lib/postgresql/data
-  static_html: # custom key name
-    # image: python:3-slim-bullseye
-    build:
-      context: ./static_html
-      dockerfile: static.Dockerfile
-    ports:
-      - 8000:8000
-      - 3000:8000
-    command: python -m http.server 8000
-    volumes:
-      - ./static_html/src:/app
+# static_html: # custom key name
+#   # image: python:3-slim-bullseye
+#   build:
+#     context: ./static_html
+#     dockerfile: static.Dockerfile
+#   ports:
+#     - 8000:8000
+#     - 3000:8000
+#   command: python -m http.server 8000
+#   volumes:
+#     - ./static_html/src:/app
 
 volumes:
   dc_managed_db_volume:
