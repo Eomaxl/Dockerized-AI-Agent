@@ -1,7 +1,8 @@
 # declare what image to use
 # FROM codingforentrepreneurs/cfe-nginx:latest
 # FROM image_name:latest
-FROM python:3-slim-bullseye
+# FROM python:3-slim-bullseye
+FROM python:3.13.4-slim-bullseye
 
 WORKDIR /app
 # react static app

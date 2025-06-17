@@ -1,4 +1,4 @@
-FROM python:3-slim-bullseye
+FROM python:3.13.4-slim-bullseye
 
 # Create python virtual environment
 # Isolate our python app and installs from system-level python
