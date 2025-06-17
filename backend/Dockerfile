@@ -16,4 +16,4 @@ RUN pip install -r /tmp/requirements.txt
 COPY ./src .
 
 
-CMD ["python", "-m", "http.server", "8000"] pyapp
+CMD ["python", "-m", "http.server", "8000"]
