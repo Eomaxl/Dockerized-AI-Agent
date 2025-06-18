@@ -13,7 +13,7 @@ def chat_health():
 
 # /api/chats/recent
 # curl http://localhost:8080/api/chats/recent/
-@router.get("/recent/", response_model=List[ChatMessageListItem])
+@router.get("/recent/")
 def chat_list_messages(session: Session = Depends(get_session)):
     query = select(ChatMessage)
     results = session.exec(query).fetchall()[:10]
