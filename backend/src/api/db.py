@@ -4,7 +4,7 @@ import sqlmodel
 from sqlmodel import Session, SQLModel
 
 # DATABASE_URL = os.environ.get("DATABASE_URL")
-DATABASE_URL = "postgresql+psycopg://dbuser:db-password@db_service:5432/mydb"
+DATABASE_URL = "postgresql+psycopg://user:password@db:5432/mydb"
 
 if DATABASE_URL == "":
     raise NotImplementedError("`DATABASE_URL` needs to be set.")
