@@ -1,6 +1,7 @@
 import os
 import sqlmodel 
-from sqlmodel import Session, SQLModel
+from sqlmodel import Session, SQLModel, inspect
+from sqlalchemy.exc import ProgrammingError
 
 DATABASE_URL = os.environ.get("DATABASE_URL","")
 
@@ -12,8 +13,19 @@ engine = sqlmodel.create_engine(DATABASE_URL)
 
 # database models
 def init_db():
-    print("Creating database tables...")
-    SQLModel.metadata.create_all(engine)
+    # print("Creating database tables...")
+    # SQLModel.metadata.create_all(engine)
+    from api.models import ChatMessage  # ensure model is imported
+    try:
+        inspector = inspect(engine)
+        if "chatmessage" not in inspector.get_table_names():
+            print("Creating table 'chatmessage'...")
+            SQLModel.metadata.create_all(engine, tables=[ChatMessage.__table__])
+        else:
+            print("Table 'chatmessage' already exists.")
+    except ProgrammingError as e:
+        print(f"❌ DB privilege error: {e}")
+        print("Skipping table creation — permission denied.")
 
 # api routes
 def get_session():
