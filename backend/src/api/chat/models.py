@@ -15,6 +15,8 @@ class ChatMessage(SQLModel, table=True):
     # saving, updating, getting, deleting
     id: int | None = Field(default=None, primary_key=True)
     message: str
+    response: str | None = None
+    status: str = Field(default="pending")
     created_at: datetime= Field(
         default_factory=get_utc_now,
         sa_type=DateTime(timezone=True),
