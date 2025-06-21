@@ -15,7 +15,7 @@ engine = sqlmodel.create_engine(DATABASE_URL)
 def init_db():
     # print("Creating database tables...")
     # SQLModel.metadata.create_all(engine)
-    from api.models import ChatMessage  # ensure model is imported
+    from api.chat.models import ChatMessage  # ensure model is imported
     try:
         inspector = inspect(engine)
         if "chatmessage" not in inspector.get_table_names():
